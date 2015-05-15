@@ -7,9 +7,17 @@
   <link rel="stylesheet" href="">
 </head>
 <body>
-<script src="http://localhost:3300/socket.io/socket.io.js"></script>
+<!-- <script src="http://localhost:5050/socket.io/socket.io.js"></script> -->
+<script type="text/javascript">
+  // check on ../nsdos-client/index.js to see which port is used
+  var config = {
+    port: 3300
+  }
+  document.write('\x3Cscript src="http://localhost:' + config.port + '/socket.io/socket.io.js">\x3C/script>');  
+</script>
 <script>
-  var socket = io(':3300');
+
+  var socket = io(':' + config.port);
   socket.on('news', function (data) {
     console.log(data);
   })
