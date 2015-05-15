@@ -1,0 +1,16 @@
+{
+  "name": "osc-augmenta",
+  "version": "0.0.9",
+  "description": "Simple OSC to Socket.io message",
+  "main": "main.js",
+  "scripts": {
+    "start":"node main.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Soixante circuits",
+  "license": "ISC",
+  "dependencies": {
+    "node-osc":"*",
+    "socket.io": "^1.3.5"
+  }
+}
