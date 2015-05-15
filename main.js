@@ -42,7 +42,6 @@ io.on('connection', function(socket) {
 
 var checkPath = function(path, msg) {
   var data = {};
-  path = stripTrailingSlash(path);
   switch (path) {
     case "/au/personEntered":
     case "/au/personWillLeave":
@@ -102,9 +101,8 @@ oscServer.on("message", function(msg, rinfo) {
   if(msg[0] == '#bundle'){
     msg = msg[2];
   }
-  var path = msg[0],
+  var path = stripTrailingSlash(msg[0]),
     data = {};
-
   //console.log(msg);
   //console.log(path);
 

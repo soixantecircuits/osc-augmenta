@@ -16,16 +16,19 @@
   .on('/au/personEntered', function(data){
     //console.log(data);
     document.write('<br/>-- PERSON ENTER : --<br/>');
+    document.write('<span style="border-top:1px solid green;display:block;width:100%"></span>');
     document.write(JSON.stringify(data));
   })
   .on('/au/personWillLeave', function(data){
     //console.log(data);
     document.write('<br/>-- PERSON WILL LEAVE : --<br/>');
+    document.write('<span style="border-top:1px solid red;display:block;width:100%"></span>');
     document.write(JSON.stringify(data));
   })
   .on('/au/personUpdated', function(data){
     //console.log(data);
     document.write('<br/>-- PERSON UPDATE : --<br/>');
+    document.write('<span style="border-top:1px solid blue;display:block;width:100%"></span>');
     document.write(JSON.stringify(data));
   })
   .on('/au/scene', function(data){
