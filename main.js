@@ -29,12 +29,20 @@ function handler(req, res) {
     });
 }
 
+function stripTrailingSlash(str) {
+    if(str.substr(-1) == '/') {
+        return str.substr(0, str.length - 1);
+    }
+    return str;
+}
+
 io.on('connection', function(socket) {
   console.log('client connected.');
 });
 
-var checkPath = function() {
+var checkPath = function(path, msg) {
   var data = {};
+  path = stripTrailingSlash(path);
   switch (path) {
     case "/au/personEntered":
     case "/au/personWillLeave":
@@ -88,14 +96,19 @@ var checkPath = function() {
 }
 
 oscServer.on("message", function(msg, rinfo) {
+  // patch because for unknow reason, it is not decoded normally.
+  // with simulator augmenta it works OOTB.
+
+  if(msg[0] == '#bundle'){
+    msg = msg[2];
+  }
   var path = msg[0],
     data = {};
-    
-  console.log(msg);
+
   //console.log(msg);
   //console.log(path);
 
-  data = checkPath(msg);
+  data = checkPath(path, msg);
 
   io.sockets.emit(path, data);
 });
