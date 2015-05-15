@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title></title>
+  <link rel="stylesheet" href="">
+</head>
+<body>
+<script src="http://localhost:3300/socket.io/socket.io.js"></script>
+<script>
+  var socket = io(':3300');
+  socket.on('news', function (data) {
+    console.log(data);
+  })
+  .on('/au/personEntered', function(data){
+    //console.log(data);
+    document.write('<br/>-- PERSON ENTER : --<br/>');
+    document.write(JSON.stringify(data));
+  })
+  .on('/au/personWillLeave', function(data){
+    //console.log(data);
+    document.write('<br/>-- PERSON WILL LEAVE : --<br/>');
+    document.write(JSON.stringify(data));
+  })
+  .on('/au/personUpdated', function(data){
+    //console.log(data);
+    document.write('<br/>-- PERSON UPDATE : --<br/>');
+    document.write(JSON.stringify(data));
+  })
+  .on('/au/scene', function(data){
+    //console.log(data);
+    document.write('<br/>-- SCENE : --<br/>');
+    document.write(JSON.stringify(data));
+  })
+</script>  
+</body>
+</html>
