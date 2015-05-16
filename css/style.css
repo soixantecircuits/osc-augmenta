@@ -1,0 +1,104 @@
+*{
+  margin: 0px;
+  padding: 0px;
+  box-sizing:border-box;
+  font-family: 'Andale Mono'
+}
+
+body{
+  overflow: hidden;
+}
+
+canvas{
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  z-index: 100;
+}
+
+h2{
+  font-size: 18px;
+}
+
+.line{
+  position: relative;
+  z-index: 1;
+  -webkit-transform:translate3d(0,0,-1);
+  transform:translate3d(0,0,1);
+}
+
+#data-layer-scene, #data-layer-people-motion{
+  position: fixed;
+  width: 50%;
+  height: 100vh;
+  z-index: 10;
+}
+
+#data-layer-people-motion{
+  right: 0px;
+}
+
+#people{
+  width: 160px;
+  height: 160px;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  margin: auto;
+  background: green;
+  color: red;
+  position: absolute;
+  z-index: 10;
+  -webkit-transform: translate3d(0,0,0);
+  transform: translate3d(0,0,1);
+  padding: 0px 33px;
+  font-size: 156px;
+}
+
+#people-move{
+  width: 50px;
+  height: 50px;
+  top:0px;
+  bottom: 0px;
+  left:0px;
+  right: 0px;
+  margin: auto;
+  background: red;
+  color: green;
+  position: absolute;
+  z-index: 10;
+  -webkit-transform: translate3d(0,0,0);
+  transform: translate3d(0,0,0);
+}
+
+#data-scene{
+  width: 50%;
+  height: 100vh;
+  float: left;
+  background-color: #111;
+  color:white;
+  border-left: 1px solid #fff;
+  overflow-y: scroll;
+  overflow-x: hidden; 
+}
+
+#data-people{
+  width: 50%;
+  height: 100vh; 
+  float: right;
+  background-color: #222;
+  color:white;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.set{
+  position: relative;
+}
+
+.set p{
+  position: relative;
+  word-wrap: break-word;
+  font-size: 14px;
+}
