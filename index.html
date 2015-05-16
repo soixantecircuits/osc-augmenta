@@ -4,47 +4,29 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title></title>
-  <link rel="stylesheet" href="">
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 <!-- <script src="http://localhost:5050/socket.io/socket.io.js"></script> -->
+
+<div class="set" id="data-scene">
+</div>
+<div class="set" id="data-layer-scene">
+<div id="people"></div>
+</div>
+<div class="set" id="data-people">
+</div>
+<div class="set" id="data-layer-people-motion">
+<div id="people-move"></div>
+</div>
 <script type="text/javascript">
   // check on ../nsdos-client/index.js to see which port is used
   var config = {
     port: 3300
   }
-  document.write('\x3Cscript src="http://localhost:' + config.port + '/socket.io/socket.io.js">\x3C/script>');  
+  document.write('\x3Cscript src="/socket.io/socket.io.js">\x3C/script>');  
 </script>
-<script>
-
-  var socket = io(':' + config.port);
-  socket.on('news', function (data) {
-    console.log(data);
-  })
-  .on('/au/personEntered', function(data){
-    //console.log(data);
-    document.write('<br/>-- PERSON ENTER : --<br/>');
-    document.write('<span style="border-top:1px solid green;display:block;width:100%"></span>');
-    document.write(JSON.stringify(data));
-  })
-  .on('/au/personWillLeave', function(data){
-    //console.log(data);
-    document.write('<br/>-- PERSON WILL LEAVE : --<br/>');
-    document.write('<span style="border-top:1px solid red;display:block;width:100%"></span>');
-    document.write(JSON.stringify(data));
-  })
-  .on('/au/personUpdated', function(data){
-    //console.log(data);
-    document.write('<br/>-- PERSON UPDATE : --<br/>');
-    document.write('<span style="border-top:1px solid blue;display:block;width:100%"></span>');
-    document.write(JSON.stringify(data));
-  })
-  .on('/au/scene', function(data){
-    //console.log(data);
-    document.write('<br/>-- SCENE : --<br/>');
-    document.write(JSON.stringify(data));
-  })
-</script>  
-
+<script src="/js/lib/jquery-2.1.4.min.js"></script>
+<script src="/js/main.js"></script>
 </body>
 </html>

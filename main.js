@@ -1,4 +1,6 @@
 var osc = require('node-osc'),
+
+  serveStatic = require('serve-static'),
   config = {
     oscServer: {
       address: '0.0.0.0',
@@ -7,33 +9,34 @@ var osc = require('node-osc'),
     socketioServer: {
       port: 3300
     }
-}
-oscServer = new osc.Server(config.oscServer.port, config.oscServer.address),
-app = require('http').createServer(handler),
-io = require('socket.io')(app),
-fs = require('fs');
+  },
+  oscServer = new osc.Server(config.oscServer.port, config.oscServer.address),
+  finalhandler = require('finalhandler'),
+  http = require('http'),
+  serveStatic = require('serve-static'),
 
-console.log('goto : http://localhost:' + config.socketioServer.port);
 
-app.listen(config.socketioServer.port);
+  serve = serveStatic(__dirname, {
+    'index': ['index.html', 'index.htm']
+  });
 
-function handler(req, res) {
-  fs.readFile(__dirname + '/index.html',
-    function(err, data) {
-      if (err) {
-        res.writeHead(500);
-        return res.end('Error loading index.html');
-      }
-      res.writeHead(200);
-      res.end(data);
-    });
-}
+// Create server
+var server = http.createServer(function(req, res) {
+  var done = finalhandler(req, res)
+  serve(req, res, done)
+})
+var io = require('socket.io')(server);
+// Listen
+server.listen(config.socketioServer.port);
+console.log('app runing on http://localhost:' + config.socketioServer.port);
+
+/*-----------*/
 
 function stripTrailingSlash(str) {
-    if(str.substr(-1) == '/') {
-        return str.substr(0, str.length - 1);
-    }
-    return str;
+  if (str.substr(-1) == '/') {
+    return str.substr(0, str.length - 1);
+  }
+  return str;
 }
 
 io.on('connection', function(socket) {
@@ -98,7 +101,7 @@ oscServer.on("message", function(msg, rinfo) {
   // patch because for unknow reason, it is not decoded normally.
   // with simulator augmenta it works OOTB.
 
-  if(msg[0] == '#bundle'){
+  if (msg[0] == '#bundle') {
     msg = msg[2];
   }
   var path = stripTrailingSlash(msg[0]),
