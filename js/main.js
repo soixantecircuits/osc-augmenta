@@ -1,38 +1,61 @@
 var socket = io(':' + config.port),
-maxNumLine = 100;
+circle = {
+  x:0,
+  y:0
+},
+circlesArray =[],
+numPeople = 0,
+maxNumLine = 120;
+function printLine(className, containerID, title, data){
+  var className = className;
+    var $container = $(containerID);
+    var $content = $('<div/>', {
+      html:'<h2>-'+ title +' : --</h2><br/>'+'<p>'+JSON.stringify(data)+'</p>',
+      'class':className + ' line'
+    }).appendTo($container);
+    godown($container, className);
+}
+
   socket
+  .on('bundle', function(data){
+    //console.log(data.length);
+    $.each(data, function(index, el){
+      if(el.path === '/au/personEntered'){
+        printLine('person-entered', '#data-people', 'PERSON ENTERED', el.data);
+      } else if(el.path === '/au/personWillLeave'){
+        printLine('person-will-leave', '#data-people', 'PERSON WILL LEAVE', el.data);
+      } else if (el.path === '/au/personUpdated' ){
+        //printLine('person-update', '#data-people', 'PERSON UPDATE', el.data);
+        circlesArray.push({
+          x: el.data.centroid.x,
+          y: el.data.centroid.y
+        });
+      } 
+    });
+  })
   .on('/au/personEntered', function(data){
     //console.log(data);
-    var className = 'person-entered';
-    var $container = $('#data-people');
-    var $content = $('<div/>', {
-      html:'<h2>-PERSON ENTERED : --</h2><br/>'+'<p>'+JSON.stringify(data)+'</p>',
-      'class':className + ' line'
-    }).appendTo($('#data-people'));
-    godown($container, className);
+    //printLine('person-entered', '#data-people', 'PERSON ENTERED', data);
   })
   .on('/au/personWillLeave', function(data){
     //console.log(data);
-    var className = 'person-will-leave';
-    var $container = $('#data-people');
-    var $content = $('<div/>', {
-      html:'<h2>-PERSON WILL LEAVE : --</h2><br/>'+'<p>'+JSON.stringify(data)+'</p>',
-      'class':className + ' line'
-    }).appendTo($('#data-people'));
-    godown($container, className);
+    //printLine('person-will-leave', '#data-people', 'PERSON WILL LEAVE', data);
   })
   .on('/au/personUpdated', function(data){
     //console.log(data);
-    var className = 'person-update';
-    var $container = $('#data-people');
-    var $content = $('<div/>', {
-      html:'<h2>-PERSON UPDATE : --</h2><br/>'+'<p>'+JSON.stringify(data)+'</p>',
-      'class':className + ' line'
-    }).appendTo($('#data-people'));
-    godown($container, className);
+    if(circlesArray.length < numPeople){
+      circlesArray.push({
+        x: data.centroid.x,
+        y: data.centroid.y
+      });
+    } else {
+      circlesArray = [];
+    }
+    //printLine('person-update', '#data-people', 'PERSON UPDATE', data);
   })
   .on('/au/scene', function(data){
     //console.log(data);
+    numPeople = data.numPeople;
     var className = 'update-scene';
     var $container = $('#data-scene');
     var $content = $('<div/>', {

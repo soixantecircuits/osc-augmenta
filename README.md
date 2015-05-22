@@ -11,7 +11,7 @@ npm i
 ## Usage
 
 ```
-node main.js
+npm start
 ```
 
 Then go to http://localhost:3300

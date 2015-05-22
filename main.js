@@ -90,17 +90,22 @@ var checkPath = function(path, msg) {
           depth: msg[8]
         }
       };
+      if(prevPeople !== data.numPeople){
+        prevPeople = data.numPeople;
+        console.log(prevPeople);
+      }
       break;
     default:
       console.log("Sorry, we do not know " + path + ".");
   }
   return data;
 }
-
+var prevPeople = 0;
+var dataArray = [];
 oscServer.on("message", function(msg, rinfo) {
   // patch because for unknow reason, it is not decoded normally.
   // with simulator augmenta it works OOTB.
-
+  //console.log(msg);
   if (msg[0] == '#bundle') {
     msg = msg[2];
   }
@@ -110,6 +115,22 @@ oscServer.on("message", function(msg, rinfo) {
   //console.log(path);
 
   data = checkPath(path, msg);
+  if(path === '/au/scene'){
+    io.sockets.emit(path, data);    
+  } else {
+    if (prevPeople > 100){
+      dataArray.push({
+        path:path,
+        data:data
+      });
+      if(dataArray.length > 1000){
+        io.sockets.emit('bundle', dataArray);  
+        dataArray = [];
+      }
+    } else {
+      io.sockets.emit(path, data);   
+    }
+  }
 
-  io.sockets.emit(path, data);
+  i
 });

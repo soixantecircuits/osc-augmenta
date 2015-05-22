@@ -11,10 +11,15 @@ requestAnimationFrame(animate);
 
 function animate() {
     requestAnimationFrame(animate);
-
-    // just for fun, let's rotate mr rabbit a little
+    if(circlesArray.length > 0){
+      circles.clear();  
+    }
     
-    drawCircle();
+    // just for fun, let's rotate mr rabbit a little
+    $.each(circlesArray, function(index, circle){
+      drawCircle(circle.x, circle.y);
+    });
+    circlesArray = [];
     // render the stage
     renderer.render(stage);
 }
@@ -28,11 +33,11 @@ function onResize() {
     renderer.resize(screenW,screenH);
 }   
 
-function drawCircle(){
-  circles.clear();
+function drawCircle(x, y){
+  
   // draw a circle
   circles.beginFill(0xFFFF0B, 0.5);
-  circles.drawCircle(renderer.width/2, renderer.height/2, 50);
+  circles.drawCircle(x*renderer.width, y*renderer.height, 10);
   circles.endFill();
 }
 
