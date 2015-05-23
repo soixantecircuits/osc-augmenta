@@ -13,6 +13,12 @@ function printLine(className, containerID, title, data){
       html:'<br/><h2>$ > '+ title +' : --</h2>'+'<p>'+JSON.stringify(data)+'</p>',
       'class':className + ' line'
     }).appendTo($container);
+    var randomNumber = getRandomInt(0,3);
+    var needToGlitch = (randomNumber == 1)? true : false;
+    if(needToGlitch){
+      glitchTitle($content.find('h2'));
+      glitchPhrase($content.find('p'));
+    }
     godown($container, className);
 }
 
@@ -25,7 +31,7 @@ function printLine(className, containerID, title, data){
       } else if(el.path === '/au/personWillLeave'){
         printLine('person-will-leave', '#data-people', 'PERSON WILL LEAVE', el.data);
       } else if (el.path === '/au/personUpdated' ){
-        //printLine('person-update', '#data-people', 'PERSON UPDATE', el.data);
+        printLine('person-update', '#data-people', 'PERSON UPDATE', el.data);
         circlesArray.push({
           x: el.data.centroid.x,
           y: el.data.centroid.y
@@ -64,6 +70,12 @@ function printLine(className, containerID, title, data){
     }).appendTo($container);
     $('#people').html(data.numPeople);
     godown($container, className);
+    var randomNumber = getRandomInt(0,3);
+    var needToGlitch = (randomNumber == 1)? true : false;
+    if(needToGlitch){
+      glitchTitle($content.find('h2'));
+      glitchPhrase($content.find('p'));
+    }
   })
 
   function godown($el, className){
@@ -75,3 +87,33 @@ function printLine(className, containerID, title, data){
     }
     $el.scrollTop($elementArray.length*$elementArray.height());
   }
+
+var typoClasses = ['daedra', 'rune', 'etro', 'harpers'];
+
+function glitchTitle($title){
+  if($title.children('span').length == 0){
+    $title.lettering();
+  }
+  var randomSignIndex = getRandomInt(0, $title.children('span').length);
+  var $letterToGlitch = $($title.children('span')[randomSignIndex]);
+  var randomClass = getRandomInt(0,3);
+  $letterToGlitch.addClass(typoClasses[randomClass]);
+}
+function glitchPhrase($phrase){
+  if($phrase.children('span').length == 0){
+    $phrase.lettering();
+  }
+  var $lettersToGlitch = [];
+  var nbToGlitch = 30;
+
+  for(var i=0; i<nbToGlitch; i++){
+    var randomLetterIndex = getRandomInt(0,$phrase.children('span').length);
+    var $letter = $($phrase.children('span')[randomLetterIndex]);
+    $letter.addClass(typoClasses[getRandomInt(0,3)]);
+  }
+}
+
+
+function getRandomInt(min, max) {
+  return Math.floor(Math.random() * (max - min)) + min;
+}

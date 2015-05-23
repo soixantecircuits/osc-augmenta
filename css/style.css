@@ -103,3 +103,17 @@ h2{
   word-wrap: break-word;
   font-size: 14px;
 }
+
+/* Typo classes */
+.daedra {
+  font-family: 'Daedra' !important;
+}
+.etro {
+  font-family: 'Etro' !important;
+}
+.harpers {
+  font-family: 'Harpers' !important;
+}
+.rune {
+  font-family: 'Rune' !important;
+}
