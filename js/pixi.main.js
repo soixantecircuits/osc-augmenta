@@ -38,6 +38,7 @@ function drawCircle(x, y){
   // draw a circle
   // circles.beginFill(0xFFFF0B, 0.5);
   circles.beginFill(0x0000FF, 1);
+  // circles.beginFill(0x000000, 1);
 
   // circles.drawCircle(x*renderer.width, y*renderer.height, 4);
 
@@ -45,16 +46,18 @@ function drawCircle(x, y){
   x *= renderer.width;
   y *= renderer.height;
 
-  var a = new PIXI.Point(x - radius, y + radius);
-  var b = new PIXI.Point(x, y - radius);
-  var c = new PIXI.Point(x + radius, y + radius);
+  // var a = new PIXI.Point(x - radius, y + radius);
+  // var b = new PIXI.Point(x, y - radius);
+  // var c = new PIXI.Point(x + radius, y + radius);
 
   // console.log(a, b, c);
   // console.log(x, y);
 
-  circles.moveTo(a.x, a.y);
-  circles.lineTo(b.x, b.y);
-  circles.lineTo(c.x, c.y);
+  // circles.moveTo(a.x, a.y);
+  // circles.lineTo(b.x, b.y);
+  // circles.lineTo(c.x, c.y);
+
+  circles.drawRect(x, y, radius, radius);
 
   circles.endFill();
 }
