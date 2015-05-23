@@ -42,7 +42,7 @@ function drawCircle(x, y){
 
   // circles.drawCircle(x*renderer.width, y*renderer.height, 4);
 
-  var radius = 6;
+  var radius = 10;
   x *= renderer.width;
   y *= renderer.height;
 
