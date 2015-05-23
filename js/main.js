@@ -16,12 +16,7 @@ function printLine(className, containerID, title, data, index){
     html:'<br/><h2>$ N5D05@G4173 > '+ title +' : --</h2>'+'<p>'+JSON.stringify(data)+'</p>',
     'class':className + ' line'
   }).appendTo($container);
-  var randomNumber = getRandomInt(0,2);
-  var needToGlitch = (randomNumber == 1)? true : false;
-  if(needToGlitch){
-  glitchTitle($content.find('h2'));
-  glitchPhrase($content.find('p'));
-  }
+  glitchTypo($content);
   godown($container, className);
 }
 
@@ -74,12 +69,7 @@ function printLine(className, containerID, title, data, index){
     }).appendTo($container);
     $('#people').html(data.numPeople);
     godown($container, className);
-    var randomNumber = getRandomInt(0,2);
-    var needToGlitch = (randomNumber == 1)? true : false;
-    if(needToGlitch){
-      glitchTitle($content.find('h2'));
-      glitchPhrase($content.find('p'));
-    }
+    glitchTypo($content);
   })
 
   function godown($el, className){
@@ -93,6 +83,15 @@ function printLine(className, containerID, title, data, index){
   }
 
 var typoClasses = ['daedra', 'rune', 'etro', 'harpers'];
+
+function glitchTypo($content){
+  var randomNumber = getRandomInt(0,2);
+  var needToGlitch = (randomNumber == 1)? true : false;
+  if(needToGlitch){
+    glitchTitle($content.find('h2'));
+    glitchPhrase($content.find('p'));
+  }
+}
 
 function glitchTitle($title){
   if($title.children('span').length == 0){
