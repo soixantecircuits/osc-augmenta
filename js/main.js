@@ -5,12 +5,12 @@ circle = {
 },
 circlesArray =[],
 numPeople = 0,
-maxNumLine = 8;
+maxNumLine = 10;
 function printLine(className, containerID, title, data){
   var className = className;
     var $container = $(containerID);
     var $content = $('<div/>', {
-      html:'<br/><h2>$ > '+ title +' : --</h2>'+'<p>'+JSON.stringify(data)+'</p>',
+      html:'<br/><h2>$ N5D05@G4173 > '+ title +' : --</h2>'+'<p>'+JSON.stringify(data)+'</p>',
       'class':className + ' line'
     }).appendTo($container);
     godown($container, className);
@@ -60,7 +60,7 @@ function printLine(className, containerID, title, data){
     var className = 'update-scene';
     var $container = $('#data-scene');
     var $content = $('<div/>$', {
-      html:'<br/><h2>$ > SCENE : --</h2>'+'<p>'+JSON.stringify(data)+'</p>',
+      html:'<br/><h2>$ N5D05@G4173 > SCENE : --</h2>'+'<p>'+JSON.stringify(data)+'</p>',
       'class':className + ' line'
     }).appendTo($container);
     $('#people').html(data.numPeople);
