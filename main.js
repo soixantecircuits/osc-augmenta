@@ -116,7 +116,7 @@ oscServer.on("message", function(msg, rinfo) {
 
   data = checkPath(path, msg);
   if(path === '/au/scene'){
-    io.sockets.emit(path, data);    
+    io.sockets.emit(path, data);
   } else {
     if (prevPeople > 100){
       dataArray.push({
@@ -124,13 +124,11 @@ oscServer.on("message", function(msg, rinfo) {
         data:data
       });
       if(dataArray.length > 1000){
-        io.sockets.emit('bundle', dataArray);  
+        io.sockets.emit('bundle', dataArray);
         dataArray = [];
       }
     } else {
-      io.sockets.emit(path, data);   
+      io.sockets.emit(path, data);
     }
   }
-
-  i
 });

@@ -12,9 +12,9 @@ requestAnimationFrame(animate);
 function animate() {
     requestAnimationFrame(animate);
     if(circlesArray.length > 0){
-      circles.clear();  
+      circles.clear();
     }
-    
+
     // just for fun, let's rotate mr rabbit a little
     $.each(circlesArray, function(index, circle){
       drawCircle(circle.x, circle.y);
@@ -31,13 +31,14 @@ function onResize() {
     screenW = $(window).width();
     screenH = $(window).height();
     renderer.resize(screenW,screenH);
-}   
+}
 
 function drawCircle(x, y){
-  
+
   // draw a circle
-  circles.beginFill(0xFFFF0B, 0.5);
-  circles.drawCircle(x*renderer.width, y*renderer.height, 10);
+  // circles.beginFill(0xFFFF0B, 0.5);
+  circles.beginFill(0xFF0000, 0.5);
+  circles.drawCircle(x*renderer.width, y*renderer.height, 2);
   circles.endFill();
 }
 

@@ -39,21 +39,22 @@ h2{
 }
 
 #people{
-  width: 160px;
-  height: 160px;
-  top: 0px;
+  /*width: 160px;*/
+  /*height: 160px;*/
+  top: 45%;
   bottom: 0px;
-  left: 0px;
+  left: 87%;
   right: 0px;
   margin: auto;
-  background: green;
+  /*background: green;*/
   color: red;
   position: absolute;
   z-index: 10;
   -webkit-transform: translate3d(0,0,0);
   transform: translate3d(0,0,1);
   padding: 0px 33px;
-  font-size: 156px;
+  font-size: 60px;
+  font-family: monospace;
 }
 
 #people-move{
@@ -64,7 +65,7 @@ h2{
   left:0px;
   right: 0px;
   margin: auto;
-  background: red;
+  /*background: red;*/
   color: green;
   position: absolute;
   z-index: 10;
@@ -79,17 +80,17 @@ h2{
   background-color: #111;
   color:white;
   border-left: 1px solid #fff;
-  overflow-y: scroll;
-  overflow-x: hidden; 
+  overflow-y: hidden;
+  overflow-x: hidden;
 }
 
 #data-people{
   width: 50%;
-  height: 100vh; 
+  height: 100vh;
   float: right;
-  background-color: #222;
-  color:white;
-  overflow-y: scroll;
+  background-color: #111;
+  color: rgb(0, 255, 0);
+  overflow-y: hidden;
   overflow-x: hidden;
 }
 

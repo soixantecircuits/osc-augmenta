@@ -10,7 +10,7 @@ function printLine(className, containerID, title, data){
   var className = className;
     var $container = $(containerID);
     var $content = $('<div/>', {
-      html:'<h2>-'+ title +' : --</h2><br/>'+'<p>'+JSON.stringify(data)+'</p>',
+      html:'<br/><h2>$ > '+ title +' : --</h2>'+'<p>'+JSON.stringify(data)+'</p>',
       'class':className + ' line'
     }).appendTo($container);
     godown($container, className);
@@ -30,7 +30,7 @@ function printLine(className, containerID, title, data){
           x: el.data.centroid.x,
           y: el.data.centroid.y
         });
-      } 
+      }
     });
   })
   .on('/au/personEntered', function(data){
@@ -58,8 +58,8 @@ function printLine(className, containerID, title, data){
     numPeople = data.numPeople;
     var className = 'update-scene';
     var $container = $('#data-scene');
-    var $content = $('<div/>', {
-      html:'<h2>-SCENE : --</h2><br/>'+'<p>'+JSON.stringify(data)+'</p>',
+    var $content = $('<div/>$', {
+      html:'<br/><h2>$ > SCENE : --</h2>'+'<p>'+JSON.stringify(data)+'</p>',
       'class':className + ' line'
     }).appendTo($container);
     $('#people').html(data.numPeople);
