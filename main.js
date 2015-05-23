@@ -3,7 +3,7 @@ var osc = require('node-osc'),
   serveStatic = require('serve-static'),
   config = {
     oscServer: {
-      address: '0.0.0.0',
+      address: '192.168.8.101',
       port: 8080
     },
     socketioServer: {
@@ -124,6 +124,7 @@ oscServer.on("message", function(msg, rinfo) {
         data:data
       });
       if(dataArray.length > 1000){
+        console.log('debut server ');
         io.sockets.emit('bundle', dataArray);
         dataArray = [];
       }

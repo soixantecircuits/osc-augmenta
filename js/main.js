@@ -16,6 +16,12 @@ function printLine(className, containerID, title, data, index){
     html:'<br/><h2>$ N5D05@G4173 > '+ title +' : --</h2>'+'<p>'+JSON.stringify(data)+'</p>',
     'class':className + ' line'
   }).appendTo($container);
+  var randomNumber = getRandomInt(0,2);
+  var needToGlitch = (randomNumber == 1)? true : false;
+  if(needToGlitch){
+  glitchTitle($content.find('h2'));
+  glitchPhrase($content.find('p'));
+  }
   godown($container, className);
 }
 
@@ -68,6 +74,12 @@ function printLine(className, containerID, title, data, index){
     }).appendTo($container);
     $('#people').html(data.numPeople);
     godown($container, className);
+    var randomNumber = getRandomInt(0,2);
+    var needToGlitch = (randomNumber == 1)? true : false;
+    if(needToGlitch){
+      glitchTitle($content.find('h2'));
+      glitchPhrase($content.find('p'));
+    }
   })
 
   function godown($el, className){
@@ -79,3 +91,35 @@ function printLine(className, containerID, title, data, index){
     }
     $el.scrollTop($elementArray.length*$elementArray.height());
   }
+
+var typoClasses = ['daedra', 'rune', 'etro', 'harpers'];
+
+function glitchTitle($title){
+  if($title.children('span').length == 0){
+    $title.lettering();
+  }
+  var nbToGlitch = getRandomInt(2,5);
+  for(var i=0; i<nbToGlitch;i++){
+    var randomLetterIndex = getRandomInt(0,$title.children('span').length);
+    var $letter = $($title.children('span')[randomLetterIndex]);
+    $letter.addClass(typoClasses[getRandomInt(0,3)]);
+  }
+}
+function glitchPhrase($phrase){
+  if($phrase.children('span').length == 0){
+    $phrase.lettering();
+  }
+  var $lettersToGlitch = [];
+  var nbToGlitch = 30;
+
+  for(var i=0; i<nbToGlitch; i++){
+    var randomLetterIndex = getRandomInt(0,$phrase.children('span').length);
+    var $letter = $($phrase.children('span')[randomLetterIndex]);
+    $letter.addClass(typoClasses[getRandomInt(0,3)]);
+  }
+}
+
+
+function getRandomInt(min, max) {
+  return Math.floor(Math.random() * (max - min)) + min;
+}
