@@ -5,15 +5,18 @@ circle = {
 },
 circlesArray =[],
 numPeople = 0,
-maxNumLine = 10;
-function printLine(className, containerID, title, data){
+maxNumLine = 20;
+function printLine(className, containerID, title, data, index){
+  if(typeof(index) !== undefined && index % 100 !== 0){
+    return false;
+  }
   var className = className;
-    var $container = $(containerID);
-    var $content = $('<div/>', {
-      html:'<br/><h2>$ N5D05@G4173 > '+ title +' : --</h2>'+'<p>'+JSON.stringify(data)+'</p>',
-      'class':className + ' line'
-    }).appendTo($container);
-    godown($container, className);
+  var $container = $(containerID);
+  var $content = $('<div/>', {
+    html:'<br/><h2>$ N5D05@G4173 > '+ title +' : --</h2>'+'<p>'+JSON.stringify(data)+'</p>',
+    'class':className + ' line'
+  }).appendTo($container);
+  godown($container, className);
 }
 
   socket
@@ -21,11 +24,11 @@ function printLine(className, containerID, title, data){
     //console.log(data.length);
     $.each(data, function(index, el){
       if(el.path === '/au/personEntered'){
-        printLine('person-entered', '#data-people', 'PERSON ENTERED', el.data);
+        printLine('person-entered', '#data-people', 'PERSON ENTERED', el.data, index);
       } else if(el.path === '/au/personWillLeave'){
-        printLine('person-will-leave', '#data-people', 'PERSON WILL LEAVE', el.data);
+        printLine('person-will-leave', '#data-people', 'PERSON WILL LEAVE', el.data, index);
       } else if (el.path === '/au/personUpdated' ){
-        //printLine('person-update', '#data-people', 'PERSON UPDATE', el.data);
+        printLine('person-update', '#data-people', 'PERSON UPDATE', el.data, index);
         circlesArray.push({
           x: el.data.centroid.x,
           y: el.data.centroid.y

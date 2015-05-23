@@ -118,7 +118,7 @@ oscServer.on("message", function(msg, rinfo) {
   if(path === '/au/scene'){
     io.sockets.emit(path, data);
   } else {
-    if (prevPeople > 100){
+    if (prevPeople > 50){
       dataArray.push({
         path:path,
         data:data
