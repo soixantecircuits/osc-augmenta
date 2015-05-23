@@ -7,7 +7,7 @@ circlesArray =[],
 numPeople = 0,
 maxNumLine = 10;
 function printLine(className, containerID, title, data, index){
-  if(typeof(index) !== undefined && index % 100 !== 0){
+  if(typeof(index) !== 'undefined' && index % 100 !== 0){
     return false;
   }
   var className = className;
