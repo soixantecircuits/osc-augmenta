@@ -35,11 +35,12 @@ function printLine(className, containerID, title, data){
   })
   .on('/au/personEntered', function(data){
     //console.log(data);
-    //printLine('person-entered', '#data-people', 'PERSON ENTERED', data);
+    printLine('person-entered', '#data-people', 'PERSON ENTERED', data);
+    // printLine('person-entered', '#data-people', 'PERSON ENTERED', el.data);
   })
   .on('/au/personWillLeave', function(data){
     //console.log(data);
-    //printLine('person-will-leave', '#data-people', 'PERSON WILL LEAVE', data);
+    printLine('person-will-leave', '#data-people', 'PERSON WILL LEAVE', data);
   })
   .on('/au/personUpdated', function(data){
     //console.log(data);
@@ -51,7 +52,7 @@ function printLine(className, containerID, title, data){
     } else {
       circlesArray = [];
     }
-    //printLine('person-update', '#data-people', 'PERSON UPDATE', data);
+    printLine('person-update', '#data-people', 'PERSON UPDATE', data);
   })
   .on('/au/scene', function(data){
     //console.log(data);
