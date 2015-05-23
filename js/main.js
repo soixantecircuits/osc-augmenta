@@ -5,7 +5,7 @@ circle = {
 },
 circlesArray =[],
 numPeople = 0,
-maxNumLine = 120;
+maxNumLine = 8;
 function printLine(className, containerID, title, data){
   var className = className;
     var $container = $(containerID);
