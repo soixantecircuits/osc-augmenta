@@ -13,7 +13,7 @@ function printLine(className, containerID, title, data){
       html:'<br/><h2>$ > '+ title +' : --</h2>'+'<p>'+JSON.stringify(data)+'</p>',
       'class':className + ' line'
     }).appendTo($container);
-    var randomNumber = getRandomInt(0,3);
+    var randomNumber = getRandomInt(0,2);
     var needToGlitch = (randomNumber == 1)? true : false;
     if(needToGlitch){
       glitchTitle($content.find('h2'));
@@ -70,7 +70,7 @@ function printLine(className, containerID, title, data){
     }).appendTo($container);
     $('#people').html(data.numPeople);
     godown($container, className);
-    var randomNumber = getRandomInt(0,3);
+    var randomNumber = getRandomInt(0,2);
     var needToGlitch = (randomNumber == 1)? true : false;
     if(needToGlitch){
       glitchTitle($content.find('h2'));
@@ -94,10 +94,12 @@ function glitchTitle($title){
   if($title.children('span').length == 0){
     $title.lettering();
   }
-  var randomSignIndex = getRandomInt(0, $title.children('span').length);
-  var $letterToGlitch = $($title.children('span')[randomSignIndex]);
-  var randomClass = getRandomInt(0,3);
-  $letterToGlitch.addClass(typoClasses[randomClass]);
+  var nbToGlitch = getRandomInt(2,5);
+  for(var i=0; i<nbToGlitch;i++){
+    var randomLetterIndex = getRandomInt(0,$title.children('span').length);
+    var $letter = $($title.children('span')[randomLetterIndex]);
+    $letter.addClass(typoClasses[getRandomInt(0,3)]);
+  }
 }
 function glitchPhrase($phrase){
   if($phrase.children('span').length == 0){
